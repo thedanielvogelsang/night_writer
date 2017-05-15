@@ -1,4 +1,6 @@
-#pseudocode #this is my change 
+#pseudocode #this is my change
+
+File IO (First)
 
 1) chceck for length ()
   def chunk_input
@@ -6,13 +8,16 @@
     outputs arrays of 40 character max chunk array
   end
 
+<
+#start testing here
 2) Create Braille Dict. Hash (Separate)
 
 3) Translation Class
   takes each chunk array, translate by looping through following:
 
-  Take from original string, create array with .split
-  enum over new array with hash => value
+Take from original string(from file io), create array with .split
+
+enum over new array with hash => value
       returns [[<braille of each letter],[braille of next letter]]
     for cap letters:
         if upcase?
@@ -43,6 +48,7 @@ def create_top_mid_bottom
 
 
 
+end
 
 
 

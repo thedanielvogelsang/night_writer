@@ -1,6 +1,6 @@
 # DTR: Define the Relationship
 
-Use this template to when conducting DTR with your project partners. It's recommended that you copy/paste this template into your own gist each time you conduct a DTR to take notes on the conversation. 
+Use this template to when conducting DTR with your project partners. It's recommended that you copy/paste this template into your own gist each time you conduct a DTR to take notes on the conversation.
 
 ### Guiding Questions to Define The Relationship:
 
@@ -26,53 +26,55 @@ Any additional questions that you would like to add:
 
 ### Template for DTR Memo
 
-Project: Night_Writer 
+Project: Night_Writer
 
 Group Member Names: Daniel Vogelsang (V) / Daniel Phillips (P)
 
-Project Expectations: What does each group member hope to get out of this project? 
+Project Expectations: What does each group member hope to get out of this project?
 
-V - Nail down all the things. 
+V - Nail down all the things.
 P - Get good at Chess not checkers.
 
 Goals and expectations:
-	
+
 Team strengths:
-  Technical 
+  Technical
   V - enumerables; arrays; pry
     weaknesses: instance variables ; communication between classes ; linked-lists ; hashes ; FILE IO/ ARGV
-  
+
   P - enumerables; methods; pry
     weaknesses: attr_reader/writer/accessor ; class variables ; FILE IO/ARGV
-  
+
   Soft-Skills
-  V - No pretense; desire continual and honest communication > project ruberic goals; 
-  
-  P - Open with commmunicaton and with vision; no pretense; 
+  V - No pretense; desire continual and honest communication > project ruberic goals;
+
+  P - Open with commmunicaton and with vision; no pretense;
 
 How to overcome obstacles:
- Communicaton after intentional self-exploration; honesty about your struggles; 
- Voice concerns/have convo with returning to DTR/show willingness to go the extra mile while making new 
+ Communicaton after intentional self-exploration; honesty about your struggles;
+ Voice concerns/have convo with returning to DTR/show willingness to go the extra mile while making new
 
 Schedule Expectations (When are we available to work together and individually?):
   Daniel V NOT GOOD: [immediately after class; nighttime after 11; friday/saturday evening/night (when I work)]
-     --- Saturday 9am - 2pm 
-     --- Sunday all day 
+     --- Saturday 9am - 2pm
+     --- Sunday all day
      --- Evenings after 6:00 til 11
   Daniel P: Prefer weekends over evenings for cognitive purposes.
-  
+
 Communication Expectations (How and often will we communicate? How do we keep lines of communication open?):
-  Open communication, leave the ego at the door. 
+  Open communication, leave the ego at the door.
   Focus on task at hand -- V's autism.
   Direct communication.
-  P will be honest when he needs a different environment/ needs to leave to relax his brain. 
+  P will be honest when he needs a different environment/ needs to leave to relax his brain.
 
 Abilities Expectations (Technical strengths and areas for desired improvement):
-  Within the agenda, 
-  
+  Within the agenda,
+
 Workload Expectations (What features do we each want to work on?):
 
 Workflow Expectations (Git workflow/Tools/Code Review/Reviewing Pull Requests): 
+
+
 
 Expectations for giving and receiving feedback:
 
@@ -80,9 +82,7 @@ Agenda to discuss project launch:
 
 
 Ideas:
- 
-Tools: 
+
+Tools:
 
 Additional Notes:
-
-
