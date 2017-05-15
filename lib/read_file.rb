@@ -1,4 +1,3 @@
-require 'pry'
 class ReadAndPrepare
   def initialize(file_as_string)
     @arg = file_as_string
@@ -24,7 +23,6 @@ class ReadAndPrepare
       mini = []
       counter = 0
     end
-    binding.pry
     print argv
   end
 end
