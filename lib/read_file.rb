@@ -1,10 +1,12 @@
 class ReadAndPrepare
+    attr_reader :arg
+                :argv
   def initialize(file_as_string)
     @arg = file_as_string
+    @argv = []
   end
 
   def prepare_for_translator
-    argv = []
     mini = []
     x = @arg.split(//)
     counter = 0
@@ -14,6 +16,8 @@ class ReadAndPrepare
           if letter.downcase == letter
             mini << letter
             counter += 2
+          # elsif counter == 78 && letter.downcase != letter
+            # mini << letter
           else
             mini << letter
             counter += 4
