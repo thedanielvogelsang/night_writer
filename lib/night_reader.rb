@@ -15,15 +15,17 @@ attr_reader :input
     @input = input.read
   end
 
-  def split_at_new_line
-    @instance = Alphabet.new
-    x = []
-      y = @input.split("\n")
-      y.each do |brail_line|
-        x << brail_line.split(//)
+
+     def split_at_new_line
+      @instance = Alphabet.new
+      x = []
+        y = @input.split("\n") #array of strings divided at each line(top,mid,bot)
+        y.each do |brail_line| #each string
+          x << brail_line.split(//) #split into a new array[ of strings, separated]] called x
+        end
+        @input = x
       end
-    @input = x
-  end
+
 
   def chunk_lines
   master_english = []
@@ -71,32 +73,37 @@ attr_reader :input
  end
 
  def translate_to_english
-  instance = Alphabet.new
-  english_trans = []
-    @input.map.with_index do |x, i|
-      if x == ['.','.','.','.','.','0']
-        x = @input.at(i+1)
-        @input.delete_at(i)
-        letter = instance.braille_dictionary.key(x)
-        english_trans << letter.upcase
-      else
-        english_trans << instance.braille_dictionary.key(x)
-      end
-    end
-    @input = english_trans
-    @input = @input.join
-  end
-
+         instance = Alphabet.new
+         english_trans = []
+         number_array = []
+           @input.map.with_index do |x, i|
+             if x == ['.','.','.','.','.','0']
+               x = @input.at(i+1)
+               @input.delete_at(i)
+               letter = instance.braille_dictionary.key(x)
+               english_trans << letter.upcase
+             elsif x == [".","0",".","0","0","0"]
+               number_array << x
+               x = @input.at(i+1)
+               number_array << x
+               @input.delete_at(i)
+               letter = instance.braille_dictionary.key(number_array)
+               english_trans << letter
+             else
+               english_trans << instance.braille_dictionary.key(x)
+             end
+           end
+         @input = english_trans
+         @input = @input.join
+       end
 end
 
 instance = BrailleReader.new
-# instance.split_at_new_line
-# instance.chunk_lines
-# instance.prepare_for_translator
-# instance.join_em_up
-# file_new = File.new(ARGV[1],"w+")
-# chars = file_new.write(instance.translate_to_english)
-#
-# puts "Created #{ARGV[1]} with #{chars} characters."
+instance.split_at_new_line
+instance.chunk_lines
+instance.prepare_for_translator
+instance.join_em_up
+file_new = File.new(ARGV[1],"w+")
+chars = file_new.write(instance.translate_to_english)
 
-require 'pry'; binding.pry
+puts "Created #{ARGV[1]} with #{chars} characters."
