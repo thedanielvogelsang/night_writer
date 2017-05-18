@@ -15,6 +15,7 @@ attr_reader :input
     @input = input.read
   end
 
+
      def split_at_new_line
       @instance = Alphabet.new
       x = []
@@ -25,78 +26,84 @@ attr_reader :input
         @input = x
       end
 
-      def chunk_lines
-        master_english = []
-        until @input.length == 0
-          temporary = []
-          3.times do
-            temporary << @input.shift
-          end
-          master_english << temporary
-          temporary = []
-        end
-          @input = master_english
-      end
 
-      def prepare_for_translator
-        temporary = []
-        @input.each { |sub_array|
-          x = @input.length
-          top = sub_array[0]
-          counter = 0
-          until counter == x
-            t = top.length
-            t = t / 2
+  def chunk_lines
+  master_english = []
+    until @input.length == 0
+      temporary = []
+      3.times do
+      temporary << @input.shift
+      end
+      master_english << temporary
+      temporary = []
+    end
+    @input = master_english
+  end
+
+  def prepare_for_translator
+    temporary = []
+    @input.each { |sub_array|
+      x = @input.length
+      top = sub_array[0]
+      counter = 0
+        until counter == x
+          t = top.length
+          t = t / 2
             t.times do
               sub_array[0..2].each do |array_of_braille|
               2.times do
-                r = array_of_braille.shift
-                temporary << r
-                end
+            r = array_of_braille.shift
+            temporary << r
               end
             end
-            3.times do sub_array.shift end
-            counter += 1
-           end
+          end
+          3.times do sub_array.shift end
+        counter += 1
+     end
         }
-        @input = temporary
-        temporary
-       end
-
-       def join_em_up
-         master_english = @input.join
-         master_english = master_english.scan(/.{6}/) #now an array of [“..00..“,”“] chars
-         master_english = master_english.map { |six_bit| six_bit.split(//) } #which now finally looks like the original dictionary
-        @input = master_english
-        end
-
-# this is
-
-  def translate_to_english
-    instance = Alphabet.new
-    english_trans = []
-      @input.map.with_index do |x, i|
-        if x == ['.','.','.','.','.','0']
-          x = @input.at(i+1)
-          @input.delete_at(i)
-          letter = instance.braille_dictionary.key(x)
-          english_trans << letter.upcase
-        else
-          english_trans << instance.braille_dictionary.key(x)
-        end
-      end
-    @input = english_trans
-    @input = @input.join
+    @input = temporary
+    temporary
   end
 
+  def join_em_up
+    master_english = @input.join
+    master_english = master_english.scan(/.{6}/)
+    master_english = master_english.map { |six_bit| six_bit.split(//) }
+    @input = master_english
+ end
 
+ def translate_to_english
+         instance = Alphabet.new
+         english_trans = []
+         number_array = []
+           @input.map.with_index do |x, i|
+             if x == ['.','.','.','.','.','0']
+               x = @input.at(i+1)
+               @input.delete_at(i)
+               letter = instance.braille_dictionary.key(x)
+               english_trans << letter.upcase
+             elsif x == [".","0",".","0","0","0"]
+               number_array << x
+               x = @input.at(i+1)
+               number_array << x
+               @input.delete_at(i)
+               letter = instance.braille_dictionary.key(number_array)
+               english_trans << letter
+             else
+               english_trans << instance.braille_dictionary.key(x)
+             end
+           end
+         @input = english_trans
+         @input = @input.join
+       end
 end
 
 instance = BrailleReader.new
-# instance.ready_braille
-# file_new = File.new(ARGV[1],"w+")
-# chars = file_new.write(instance.translate_to_english)
-#
-# puts "Created #{ARGV[1]} with #{chars} characters."
+instance.split_at_new_line
+instance.chunk_lines
+instance.prepare_for_translator
+instance.join_em_up
+file_new = File.new(ARGV[1],"w+")
+chars = file_new.write(instance.translate_to_english)
 
-require 'pry'; binding.pry
+puts "Created #{ARGV[1]} with #{chars} characters."
