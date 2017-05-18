@@ -1,7 +1,9 @@
-require 'pry'
 class ReadAndPrepare
+    attr_reader :arg
+                :argv
   def initialize(file_as_string)
     @arg = file_as_string
+    @argv = []
   end
 
   def prepare_for_translator
@@ -14,6 +16,8 @@ class ReadAndPrepare
           if letter.downcase == letter
             mini << letter
             counter += 2
+          # elsif counter == 78 && letter.downcase != letter
+            # mini << letter
           else
             mini << letter
             counter += 4
@@ -23,7 +27,6 @@ class ReadAndPrepare
       mini = []
       counter = 0
     end
-    binding.pry
     print argv
   end
 end

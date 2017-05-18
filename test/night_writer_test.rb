@@ -3,6 +3,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require_relative '../lib/night_writer'
 require_relative '../lib/braille_dictionary_hash'
+require_relative '../lib/read_file'
 
 class NightWriterTest < Minitest::Test
 
