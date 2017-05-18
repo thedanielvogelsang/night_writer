@@ -5,7 +5,6 @@ class ReadAndPrepare
   end
 
   def prepare_for_translator
-    argv = []
     mini = []
     x = @arg.split(//)
     counter = 0

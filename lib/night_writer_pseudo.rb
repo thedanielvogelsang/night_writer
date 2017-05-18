@@ -1,18 +1,4 @@
-#pseudocode #this is my change
-
-File IO (First)
-
-1) chceck for length ()
-  def chunk_input
-    separates string into 40 character chunks
-    outputs arrays of 40 character max chunk array
-  end
-
-<
-#start testing here
-2) Create Braille Dict. Hash (Separate)
-
-3) Translation Class
+l3) Translation Class
   takes each chunk array, translate by looping through following:
 
 Take from original string(from file io), create array with .split
@@ -53,4 +39,23 @@ end
 
 
 
-# require 'pry'; binding.pry
+========
+Reader
+
+
+Master_Braille = top.shift(2x), mid.shift(2x), bottom (2x)
+(^is only 80 chars in braille)
+
+Master_Braille = Master_Braille + Master_Braille + etc.
+
+x = master.chunk(6)
+
+x.each do |val|
+
+  if [.....0]
+    y = [.....0] +
+    new_ string << y
+  else
+    new_string << val
+  end
+end
