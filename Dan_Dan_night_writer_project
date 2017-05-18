@@ -32,8 +32,8 @@ Group Member Names: Daniel Vogelsang (V) / Daniel Phillips (P)
 
 Project Expectations: What does each group member hope to get out of this project?
 
-V - Nail down all the things.
-P - Get good at Chess not checkers.
+  V - Nail down all the things.
+  P - Get good at Chess not checkers.
 
 Goals and expectations:
 
@@ -68,21 +68,42 @@ Communication Expectations (How and often will we communicate? How do we keep li
   P will be honest when he needs a different environment/ needs to leave to relax his brain.
 
 Abilities Expectations (Technical strengths and areas for desired improvement):
-  Within the agenda,
+  FileIO, interacting with arrays/enumerating, hash work/calling, 
 
 Workload Expectations (What features do we each want to work on?):
+  DanP: FileIO, split methods between us
+  DanV: DictionaryHash, swapping methods; reading methods
 
 Workflow Expectations (Git workflow/Tools/Code Review/Reviewing Pull Requests): 
-
-
+  Keep an open dialogue on all aspects of the project, particularly before pushing anything. 
+  Ultimately we decided to keep master versions on DanP's computer while we struggled with figuring out proper workflow (still learning github)
+  We only pulled and merged with eachother's consent, and in person.
 
 Expectations for giving and receiving feedback:
+  Open and straightforward about our needs/wants. No passive-aggressive nonesense. 
 
 Agenda to discuss project launch:
-
+  Pseudocode Each element of the writer
+  Build DictionaryHash
+  Build TDD - methods 
+  follow pseudocde and integrate methods
+  Pseudocode each element of the reader
+  build methods
+  integrate
 
 Ideas:
+  Dictionary Hash of characters (took awhile)
+  We need to keep top mid bottom layers separate. 
+  Chunking/Span'ing the strings may work
+  definitely interplaying between arrays (to shift) and strings(to chunk)
+  File IO can come after we build the pieces of the project first
 
 Tools:
+  pry (both in command line, and required in different parts of the code)
+  tdd
+  irb
+  atom
+  commandline/terminal
+
 
 Additional Notes:
