@@ -12,8 +12,8 @@ end
    attr_reader  :input
 
    def initialize
-     @input = FileReader.new
-      @input = input.read.gsub("\n","")   #this takes the \n off a string
+    @input = FileReader.new
+    @input = input.read.gsub("\n","")   #this takes the \n off a string
    end
 
    def input
