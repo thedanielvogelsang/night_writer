@@ -36,10 +36,6 @@ def create_top_mid_bottom
 
 end
 
-
-
-
-========
 Reader
 
 

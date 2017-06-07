@@ -7,61 +7,103 @@ class FileReader
   end
 end
 
-class Translator_Braille_to_English
-   attr_reader  :input
+class BrailleReader
+attr_reader :input
 
-   def initialize(input)
-     @input = input
-    #  FileReader.new
-    #  @input = @input.read
-   end
+  def initialize
+    @input = FileReader.new
+    @input = input.read
+  end
 
-   def prepare_for_translator
-    @instance = Alphabet.new
-    master_english = []
-    x = []
-      y = @input.split("\n") #array of strings
-      y.each do |brail_line| #each string
-        x << brail_line.split(//) #split into a new array[ of arrays[ of strings]] called x
-      end
 
-#x is not shrinking. how? -shrink strings? currently not doing that
- #won't stop until x is empty
-        counter = 0
-        until counter == y.join.length
-        x.each do |string_layer| #each [array[ 'of', 'strings']] will then shift two THEN
-          2.times do          #cycle to the next, retrieving only individual
-            r = string_layer.shift  #braille_characters at a time
-            master_english << r   #and swallowing characters only, one at a time, into
-            counter +=2
-          end                   #master_array
+     def split_at_new_line
+      @instance = Alphabet.new
+      x = []
+        y = @input.split("\n") #array of strings divided at each line(top,mid,bot)
+        y.each do |brail_line| #each string
+          x << brail_line.split(//) #split into a new array[ of strings, separated]] called x
         end
-       master_english
+        @input = x
       end
-      # master_english = master_english.join
-      # master_english = master_english.scan(/.{6}/) #now an array of ["..00..",""] chars
-      # master_english = master_english.map { |six_bit| six_bit.split(//) } #which now finally looks like the original dictionary
-      # master_english = master_english.map { |braille_letter|
-      #   braille_letter = @instance.braille_dictionary.key(braille_letter)}
-      @input = master_english
+
+
+  def chunk_lines
+  master_english = []
+    until @input.length == 0
+      temporary = []
+      3.times do
+      temporary << @input.shift
+      end
+      master_english << temporary
+      temporary = []
     end
-       #
-      #   def swap_letters
-      #   instance = Alphabet.new
-      #   braille_array_master =[]
-      #   @input.each { |string|
-      #     y = string.split(//)
-      #     y.each do |letter|
-      #       if letter.downcase == letter
-      #         braille_array_master << instance.braille_dictionary[letter]
-      #       else
-      #         x = instance.braille_dictionary[letter]
-      #         braille_array_master << x[0]
-      #         braille_array_master << x[1]
-      #       end
-      #     end
-      #   }
-      #   @input = braille_array_master
-      #  end
+    @input = master_english
+  end
+
+  def prepare_for_translator
+    temporary = []
+    @input.each { |sub_array|
+      x = @input.length
+      top = sub_array[0]
+      counter = 0
+        until counter == x
+          t = top.length
+          t = t / 2
+            t.times do
+              sub_array[0..2].each do |array_of_braille|
+              2.times do
+            r = array_of_braille.shift
+            temporary << r
+              end
+            end
+          end
+          3.times do sub_array.shift end
+        counter += 1
+     end
+        }
+    @input = temporary
+    temporary
+  end
+
+  def join_em_up
+    master_english = @input.join
+    master_english = master_english.scan(/.{6}/)
+    master_english = master_english.map { |six_bit| six_bit.split(//) }
+    @input = master_english
+ end
+
+ def translate_to_english
+         instance = Alphabet.new
+         english_trans = []
+         number_array = []
+           @input.map.with_index do |x, i|
+             if x == ['.','.','.','.','.','0']
+               x = @input.at(i+1)
+               @input.delete_at(i)
+               letter = instance.braille_dictionary.key(x)
+               english_trans << letter.upcase
+             elsif x == [".","0",".","0","0","0"]
+               number_array << x
+               x = @input.at(i+1)
+               number_array << x
+               @input.delete_at(i)
+               letter = instance.braille_dictionary.key(number_array)
+               english_trans << letter
+             else
+               english_trans << instance.braille_dictionary.key(x)
+             end
+           end
+         @input = english_trans
+         @input = @input.join
+       end
 end
-  #chunk master_english into 6-char bits, then assign to translator.
+
+instance = BrailleReader.new
+instance.split_at_new_line
+instance.chunk_lines
+instance.prepare_for_translator
+instance.join_em_up
+file_new = File.new(ARGV[1],"w+")
+chars = file_new.write(instance.translate_to_english)
+
+puts "Created #{ARGV[1]} with #{chars} characters."
